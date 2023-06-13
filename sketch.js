@@ -15,6 +15,7 @@ let isListening = false;
 let color = 155;
 let noise;
 let isShowing = false;
+let soundPlayed = true;
 
 function preload() {
     
@@ -31,6 +32,9 @@ function preload() {
     canciones.push([loadSound("sound_files/trenalsur"),"tren al sur"]); 
     canciones.push([loadSound("sound_files/colgandoentusmanos"),"colgando en tus manos"]);
     canciones.push([loadSound("sound_files/tabacochanel"),"tabaco y chanel"]); 
+
+    wrong_ans = loadSound("sound_files/wrongsound");
+    correct_ans = loadSound("sound_files/correctsound");
 
     myShader = loadShader("shaders/shader.vert", "shaders/shader.frag");
 
@@ -64,7 +68,7 @@ function setup() {
 
     speechRec = new p5.SpeechRec('es-ES');
     speechRec.continuous = true; // Habilitar reconocimiento de voz continuo
-    speechRec.interimResults = true; // Habilitar resultados intermedios
+    speechRec.interimResults = false; // Habilitar resultados intermedios
     speechRec.onResult = gotSpeech;
     //speechRec.start();
 
@@ -131,8 +135,10 @@ function draw() {
 
   // Condiciones para reproducir y detener canciones
   if (speechValue == "para" && isPlaying){
+    soundPlayed = false;
     parar();
   } else if (speechValue == "siguiente" && !isPlaying) {
+    soundPlayed = false;
     empezar();
     // Send the frameCount to the shader
     // myShader.setUniform("uFrameCount", frameCount);
@@ -142,6 +148,27 @@ function draw() {
     // rotateX(frameCount * 0.01);
     // rotateY(frameCount * 0.005);
   } 
+
+  else if (speechValue == canciones[auxiliar][1]) {
+    console.log("Correcto");
+    puntos = puntos + 1;  
+    parar();
+    correct_ans.play();
+    empezar();
+    puntosParrafo.html(puntos + "/12");
+    console.log(puntos);
+    soundPlayed = false;
+  }
+
+  else if (speechValue != canciones[auxiliar][1] && speechValue != undefined && speechValue != "para" && speechValue != "siguiente" && speechValue == [] && speechValue == ""){
+    console.log("incorrecto");
+    if (!soundPlayed) {
+      wrong_ans.play();
+      soundPlayed = true; // Establecer la variable de estado a true para indicar que el sonido se reprodujo
+      
+    }
+    
+  }
 
   // Cambio de índice para comenzar nuevamente
   if (index == canciones.length || index == 0){
@@ -156,14 +183,7 @@ function draw() {
 
   // Reconocimiento del título de la canción
 
-  if (speechValue == canciones[auxiliar][1]) {
-    console.log("Correcto");
-    puntos = puntos + 1;  
-    parar();
-    empezar();
-    puntosParrafo.html(puntos + "/12");
-    console.log(puntos);
-  }
+
 
   /*if (index % 2 == 0){
     firstVisualizer(level);
