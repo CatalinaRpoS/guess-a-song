@@ -1,10 +1,6 @@
-// Variable para el reconocimiento de voz
 let speechRec;
-// Array dinámico con las canciones
 let canciones = [];
-// Variable para guardar el resultado del reconocimiento de voz
 let speechValue = "";
-// Variables para pasar entre canciones
 let index = 0;
 let auxiliar = 11;
 let isPlaying = false;
@@ -30,7 +26,7 @@ function preload() {
     canciones.push([loadSound("sound_files/devuelvemeamichica"),"devuélveme a mi chica"]); 
     canciones.push([loadSound("sound_files/hijodelaluna"),"hijo de la luna"]);
     canciones.push([loadSound("sound_files/rosas"),"rosas"]); 
-    canciones.push([loadSound("sound_files/milhoras"),"1000 horas"]);
+    canciones.push([loadSound("sound_files/flaca"),"flaca"]);
     canciones.push([loadSound("sound_files/trenalsur"),"tren al sur"]); 
     canciones.push([loadSound("sound_files/colgandoentusmanos"),"colgando en tus manos"]);
     canciones.push([loadSound("sound_files/tabacochanel"),"tabaco y chanel"]); 
@@ -96,9 +92,7 @@ function setup() {
     activateButton.style("line-height", "1");
     activateButton.style("width", "200px")
     activateButton.style("justify-content", "center");
-    activateButton.style("text-transform", "uppercase");
-
-    
+    activateButton.style("text-transform", "uppercase");  
 }
 
 function activateRecognition() {
