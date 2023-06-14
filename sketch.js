@@ -157,7 +157,7 @@ function draw() {
     console.log(puntos);
     soundPlayed = false;
   } else if (auxiliar == 0 && isPlaying) {
-    if (speechValue != canciones[auxiliar][1] && speechValue != "incorrecto" && speechValue != "para" && speechValue != "siguiente" && speechValue != undefined && speechValue.length != 0) {
+    if (speechValue != canciones[canciones.length - 1][1] && speechValue != canciones[auxiliar][1] && speechValue != "incorrecto" && speechValue != "para" && speechValue != "siguiente" && speechValue != undefined && speechValue.length != 0) {
       if (!soundPlayed) {
         wrong_ans.play();
         soundPlayed = true; // Establecer la variable de estado a true para indicar que el sonido se reprodujo
