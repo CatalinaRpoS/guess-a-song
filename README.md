@@ -10,7 +10,7 @@ Say "para" and "siguiente" to stop and start the music, respectively. If you kno
 
 ## Video 
 
-Do you want to watch the gameplay? [click here!](https://youtu.be/eFPVBlRsI_4).
+Do you want to watch the gameplay? [click here!](https://www.youtube.com/watch?v=buZCN_-V7-U).
 
 ## Application
 
